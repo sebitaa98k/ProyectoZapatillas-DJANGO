@@ -1,12 +1,12 @@
-
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patagonia Kicks</title>
-    
+
     <link rel="stylesheet" href="{% static 'zapatillas/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
 </head>
@@ -100,38 +100,44 @@
         </div>
     </nav>
 
-   <main>
-      
-        <form method="GET" action="{% url 'home' %}">
-          <div class="input-group mb-3">
-              <input type="text" class=" search-style" placeholder="Buscar zapatos..." name="q" value="{{ request.GET.q }}">
-          </div>
-        </form>
-        
-        <div class="container">
-          <div class="row">
-              {% for zapato in zapatos %}
-                  <div class="col-md-4 mb-4">
-                      <div class="card">
-                          {% if zapato.imagen %}
-                              <img src="{{ zapato.imagen.url }}" class="card-img-top" alt="{{ zapato.nombre }}">
-                          {% else %}
-                              <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Imagen no disponible">
-                          {% endif %}
-                          <div class="card-body">
-                              <h5 class="card-title">{{ zapato.nombre }}</h5>
-                              <p class="card-text"><strong>Precio:</strong> ${{ zapato.precio }}</p>
-                              <a href="{% url 'detalle_zapato' zapato.id %}" class="btn btn-info">Ver</a>
-                              <a href="#" class="btn btn-success">Comprar</a>
-                          </div>
-                      </div>
-                  </div>
-              {% endfor %}
-          </div>
-      </div>
-  </main>
 
-  <footer></footer>
+    <form method="GET" action="{% url 'home' %}">
+        <div class="input-group mb-3">
+            <input type="text" class=" search-style" placeholder="Buscar zapatos..." name="q" value="{{ request.GET.q }}">
+        </div>
+      </form>
+
+
+    <div class="container">
+        <h1>Zapatos de la Marca</h1>
+        <div class="row">
+            {% for zapato in zapatos %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if zapato.imagen %}
+                            <img src="{{ zapato.imagen.url }}" class="card-img-top" alt="{{ zapato.nombre }}">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Imagen no disponible">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ zapato.nombre }}</h5>
+                            <p class="card-text">{{ zapato.descripcion }}</p>
+                            <p class="card-text"><strong>Precio:</strong> ${{ zapato.precio }}</p>
+                            <a href="{% url 'detalle_zapato' zapato.id %}" class="btn btn-info">Ver</a>
+                            <a href="#" class="btn btn-success">Comprar</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col">
+                    <p>No se encontraron zapatos para esta marca.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
 
     <script src="{% static 'zapatillas/js/bootstrap.min.js'%}"></script>
 </body>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import zapato
 
 
@@ -12,3 +12,11 @@ def home(request):
     return render(request, 'zapatillas/index.html', {'zapatos':zapatos})
 
 
+def zapatos_por_marca(request, marca_id):
+    Zapatos = zapato.objects.filter(marca=marca_id)
+    return render(request, 'zapatillas/zapatos_por_marca.html', {'Zapatos': Zapatos})
+
+
+def detalle_zapato(request, zapato_id):
+    Zapato = get_object_or_404(zapato, id=zapato_id)
+    return render(request, 'zapatillas/detalle_zapato.html', {'zapato': Zapato})

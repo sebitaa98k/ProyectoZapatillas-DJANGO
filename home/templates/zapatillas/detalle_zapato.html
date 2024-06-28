@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patagonia Kicks</title>
+
+    <link rel="stylesheet" href="{% static 'zapatillas/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>{{ zapato.nombre }}</h1>
+        <div class="row">
+            <div class="col-md-6">
+                {% if zapato.imagen %}
+                    <img src="{{ zapato.imagen.url }}" class="img-fluid" alt="{{ zapato.nombre }}">
+                {% else %}
+                    <img src="{% static 'images/default.jpg' %}" class="img-fluid" alt="Imagen no disponible">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <p><strong>Marca:</strong> {{ zapato.get_marca_display }}</p>
+                <p><strong>Descripción:</strong> {{ zapato.descripcion }}</p>
+                <p><strong>Precio:</strong> ${{ zapato.precio }}</p>
+                <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="{% static 'zapatillas/js/bootstrap.min.js'%}"></script>
+</body>
+</html>
