@@ -1,0 +1,274 @@
+
+nav {
+    gap: 50px;
+    position: relative;
+    width: 300px;
+    height: 60px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-style{
+    margin-bottom: 30px;
+    position: relative;
+    margin-top: 25px;
+    margin-left: 190px;
+    width: 75%;
+    padding: 10px 10px 10px 20px;
+    border-radius: 40px;
+    border: none;
+    font-size: 14px;
+    transition: 0.6s all ease-in-out;
+}
+
+.div-nav-style{
+    gap: 15px;
+}
+
+
+.search-style:focus-visible{
+    outline: none;
+    box-shadow: 0px 0px 6px 6px #294488;
+}
+
+.nav-carrito-sesion {
+    margin-left: 1009px;
+    gap: 15px;
+
+}
+
+.icon-cart{
+    width: 40px;
+    height: 40px;
+    stroke: #000;
+    }
+
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+.container-icon{
+    position: relative;
+}    
+
+.count-products{
+    position: absolute;
+    top: 55%;
+    right: 0;
+    background-color: #000;
+    color: white;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+}
+
+#contador-productos{
+    font-size: 12px;
+}
+
+.container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #ffffff;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px #000;
+    border-radius: 10px;
+
+    
+}
+
+.icon-close{
+    width: 25px;
+    height: 25px;
+   
+}
+
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+.card-product{
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+
+    border-bottom: 1px solid #000;
+}
+
+.hidden-cart{
+    display: none;
+}
+
+.info-cart-product{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+    
+}
+
+.titulo-producto-cart{
+    font-size: 20px;
+    
+}
+
+.precio-producto-cart{
+    font-weight: 700px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.cantidad-producto-cart{
+    font-weight: 400;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: center;  
+    align-items: center; 
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.card-total h3{
+    font-size: 20px;
+    font-weight: 700;
+}
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+}
+
+
+:root{
+    --font-mono: ul-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe IU Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+    --trasition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1)
+}
+
+.cart-position{
+    margin-left: -600px;
+}
+
+
+
+
+/* botones */
+.btn-ver-style{
+    width: 7.5em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+    -6px -6px 12px #ffffff;
+    
+}
+.btn-ver-style::before{
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to
+    right, #8c8c8c 0%, #515151 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+
+}
+
+.btn-ver-style:hover::before{
+
+    width: 9em;
+}
+
+
+.btn-style{
+    margin-left: 20px;
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+    -6px -6px 12px #ffffff;
+}
+
+.btn-style::before{
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to
+    right, #84b6f4 0%, #005187 200%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.btn-style:hover::before{
+    width: 9em;
+}
+
+.zapato-imagen{
+    width: 200px;
+    height: 200px;
+
+}
+
+.zapato-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.zapato-nombre {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.zapato-precio {
+    color: green;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.Lista-zapatos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px
+;
+}
