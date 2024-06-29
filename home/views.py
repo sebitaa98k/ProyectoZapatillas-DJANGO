@@ -13,8 +13,8 @@ def home(request):
 
 
 def zapatos_por_marca(request, marca_id):
-    Zapatos = zapato.objects.filter(marca=marca_id)
-    return render(request, 'zapatillas/zapatos_por_marca.html', {'Zapatos': Zapatos})
+    zapatos = zapato.objects.filter(marca=marca_id)
+    return render(request, 'zapatillas/zapatos_por_marca.html', {'zapatos': zapatos})
 
 
 def detalle_zapato(request, zapato_id):

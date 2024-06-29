@@ -6,8 +6,8 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('marca/<int:marca_id>/',views.zapatos_por_marca, name='zapatos_por_marca'),
-    path('zapato/<int:zapato_id>/', views.detalle_zapato, name='detalle_zapato'),
+    path('marca/<int:marca_id>/', views.zapatos_por_marca, name='zapatos_por_marca'),
+    path('zapato/<int:zapato_id>/',views.detalle_zapato, name='detalle_zapato'),
 ]
 
 if settings.DEBUG:

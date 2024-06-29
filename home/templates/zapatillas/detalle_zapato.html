@@ -25,7 +25,8 @@
                 <p><strong>Marca:</strong> {{ zapato.get_marca_display }}</p>
                 <p><strong>Descripción:</strong> {{ zapato.descripcion }}</p>
                 <p><strong>Precio:</strong> ${{ zapato.precio }}</p>
-                <a href="#" class="btn btn-primary">Comprar</a>
+                <a href="{% url 'home' %}" class="btn-ver-style btn ">Volver</a>
+                <a href="#" class="btn  btn-style">Comprar</a>
             </div>
         </div>
     </div>
