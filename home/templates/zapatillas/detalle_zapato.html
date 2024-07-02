@@ -26,12 +26,20 @@
                 <p><strong>Descripción:</strong> {{ zapato.descripcion }}</p>
                 <p><strong>Precio:</strong> ${{ zapato.precio }}</p>
                 <a href="{% url 'home' %}" class="btn-ver-style btn ">Volver</a>
-                <a href="#" class="btn  btn-style">Comprar</a>
+                <form method="post" action="{% url 'añadir_al_carrito' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="zapato_id" value="{{ zapato.id }}">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" value="1">
+                    <button type="submit" class="btn btn-style">Añadir al Carrito</button>
+                </form>
             </div>
         </div>
     </div>
-    
 
-    <script src="{% static 'zapatillas/js/bootstrap.min.js'%}"></script>
+    
+    <script src="{% static 'zapatillas/js/bootstrap.min.js' %}"></script>
+
+
 </body>
 </html>
