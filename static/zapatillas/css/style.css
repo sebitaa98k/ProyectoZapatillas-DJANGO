@@ -275,9 +275,21 @@ nav {
 .img-fondo{
     width: 950px;
     height: auto;
+    border-radius: 3em;
 }
 
 .img-container{
-    
+    justify-content: center;
+    display: flex;  
 }
 
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
