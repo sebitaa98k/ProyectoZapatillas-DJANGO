@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,24 +8,38 @@
 
     <link rel="stylesheet" href="{% static 'zapatillas/css/carrito.css' %}">
     <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
-    <script defer src="{% static 'zapatillas/js/carrito.js' %}"></script>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
 </head>
 <body>
     <h2>Carrito de Compras</h2>
-    <ul id="carrito-elementos">
-        {% for elemento in elementos %}
-            <li id="elemento-{{ elemento.id }}">
-                <img src="{{ elemento.zapato.imagen.url }}" alt="{{ elemento.zapato.nombre }}" style="width: 250px;">
-                {{ elemento.zapato.nombre }} - ${{ elemento.zapato.precio }} x <span class="cantidad">{{ elemento.cantidad }}</span> = <span class="precio_total">${{ elemento.precio_total }}</span>
-                <button class="btn-actualizar" data-id="{{ elemento.id }}" data-action="incrementar">+</button>
-                <button class="btn-actualizar" data-id="{{ elemento.id }}" data-action="decrementar">-</button>
-                <button class="btn-eliminar" data-id="{{ elemento.id }}">Eliminar</button>
-            </li>
-        {% endfor %}
-    </ul>
-    <h3>Total: $<span id="carrito-total">{{ carrito.total }}</span></h3>
+    <div id="carrito-content">
+        <ul id="carrito-elementos">
+            {% for elemento in elementos %}
+                <li id="elemento-{{ elemento.id }}">
+                    <img src="{{ elemento.zapato.imagen.url }}" alt="{{ elemento.zapato.nombre }}" style="width: 250px;">
+                    {{ elemento.zapato.nombre }} - ${{ elemento.precio }} x <span class="cantidad">{{ elemento.cantidad }}</span> = <span class="precio_total">${{ elemento.precio_total }}</span>
+                    <form hx-post="{% url 'actualizar_cantidad' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}, "action": "incrementar"}' hx-target="#elemento-{{ elemento.id }}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-actualizar">+</button>
+                    </form>
+                    <form hx-post="{% url 'actualizar_cantidad' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}, "action": "decrementar"}' hx-target="#elemento-{{ elemento.id }}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-actualizar">-</button>
+                    </form>
+                    <form hx-post="{% url 'eliminar_del_carrito' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}}' hx-target="#carrito-content" hx-swap="outerHTML">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <h3>Total: $<span id="carrito-total">{{ carrito.total }}</span></h3>
+    </div>
     <li class="nav-item"><a class="btn btn-white btn-style" href="{% url 'home' %}">Seguir Comprando</a></li>
 </body>
 </html>
+
+
+
 
 

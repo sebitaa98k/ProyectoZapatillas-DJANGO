@@ -1,0 +1,21 @@
+
+
+<!--Cargar los elementos de carrito INRTENTO N-8-->
+
+<li id="elemento-{{ elemento.id }}">
+    <img src="{{ elemento.zapato.imagen.url }}" alt="{{ elemento.zapato.nombre }}" style="width: 250px;">
+    {{ elemento.zapato.nombre }} - ${{ elemento.precio }} x <span class="cantidad">{{ elemento.cantidad }}</span> = <span class="precio_total">${{ elemento.precio_total }}</span>
+    <form hx-post="{% url 'actualizar_cantidad' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}, "action": "incrementar"}' hx-target="#elemento-{{ elemento.id }}">
+        {% csrf_token %}
+        <button type="submit" class="btn-actualizar">+</button>
+    </form>
+    <form hx-post="{% url 'actualizar_cantidad' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}, "action": "decrementar"}' hx-target="#elemento-{{ elemento.id }}">
+        {% csrf_token %}
+        <button type="submit" class="btn-actualizar">-</button>
+    </form>
+    <form hx-post="{% url 'eliminar_del_carrito' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"elemento_id": {{ elemento.id }}}' hx-target="#carrito-content" hx-swap="outerHTML">
+        {% csrf_token %}
+        <button type="submit" class="btn-eliminar">Eliminar</button>
+    </form>
+</li>
+

@@ -1,10 +1,11 @@
+
+
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import json
 from .models import Carrito, ElementoCarrito
 from home.models import zapato 
 from .forms import AñadirAlCarritoForm, EliminarDelCarritoForm
-
 
 def ver_carrito(request):
     carrito = Carrito.objects.first()
@@ -29,14 +30,15 @@ def añadir_al_carrito(request):
             else:
                 elemento.cantidad = cantidad
             elemento.save()
+            if request.htmx:
+                return JsonResponse({'status': 'success'})
             return redirect('ver_carrito')
     return redirect('home')
 
 def actualizar_cantidad(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        elemento_id = data.get('elemento_id')
-        action = data.get('action')
+        elemento_id = request.POST.get('elemento_id')
+        action = request.POST.get('action')
         elemento = get_object_or_404(ElementoCarrito, id=elemento_id)
         
         if action == 'incrementar':
@@ -50,25 +52,18 @@ def actualizar_cantidad(request):
         carrito.total = sum(e.precio_total for e in carrito.elementocarrito_set.all())
         carrito.save()
 
-        response = {
-            'cantidad': elemento.cantidad,
-            'precio_total': str(elemento.precio_total),
-            'total': str(carrito.total)
-        }
-        return JsonResponse(response)
+        return render(request, 'carrito/partials/elemento_carrito.html', {'elemento': elemento})
 
 def eliminar_del_carrito(request):
     if request.method == 'POST':
-        data = json.loads(request.body)
-        elemento_id = data.get('elemento_id')
+        elemento_id = request.POST.get('elemento_id')
         elemento = get_object_or_404(ElementoCarrito, id=elemento_id)
+        carrito = elemento.carrito
         elemento.delete()
 
-        carrito = elemento.carrito
         carrito.total = sum(e.precio_total for e in carrito.elementocarrito_set.all())
         carrito.save()
 
-        response = {
-            'total': str(carrito.total)
-        }
-        return JsonResponse(response)
+        elementos = ElementoCarrito.objects.filter(carrito=carrito)
+        return render(request, 'carrito/partials/lista_elementos.html', {'carrito': carrito, 'elementos': elementos})
+

@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,7 @@
 
     <link rel="stylesheet" href="{% static 'zapatillas/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
 </head>
 <body>
 
@@ -25,21 +27,18 @@
                 <p><strong>Marca:</strong> {{ zapato.get_marca_display }}</p>
                 <p><strong>Descripción:</strong> {{ zapato.descripcion }}</p>
                 <p><strong>Precio:</strong> ${{ zapato.precio }}</p>
-                <a href="{% url 'home' %}" class="btn-ver-style btn ">Volver</a>
-                <form method="post" action="{% url 'añadir_al_carrito' %}">
+                <a href="{% url 'home' %}" class="btn-ver-style btn">Volver</a>
+                <form hx-post="{% url 'añadir_al_carrito' %}" hx-include="[name=csrfmiddlewaretoken]" hx-vals='{"zapato_id": {{ zapato.id }}, "cantidad": 1}' hx-swap="none">
                     {% csrf_token %}
-                    <input type="hidden" name="zapato_id" value="{{ zapato.id }}">
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="number" id="cantidad" name="cantidad" min="1" value="1">
                     <button type="submit" class="btn btn-style">Añadir al Carrito</button>
                 </form>
             </div>
         </div>
     </div>
 
-    
     <script src="{% static 'zapatillas/js/bootstrap.min.js' %}"></script>
 
-
 </body>
+</html>
+
 </html>
