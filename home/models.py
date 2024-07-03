@@ -1,5 +1,8 @@
 from django.db import models
 
+
+
+# Modelo zapatilla
 class zapato(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre  = models.CharField(max_length=100)

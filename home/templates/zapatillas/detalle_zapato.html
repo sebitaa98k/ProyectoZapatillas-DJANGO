@@ -8,6 +8,7 @@
 
 
     <div class="container">
+        <a href="{% url 'home' %}" class="btn-ver-style btn ">Volver</a>
         <h1>{{ zapato.nombre }}</h1>
         <div class="row">
             <div class="col-md-6">
@@ -21,7 +22,7 @@
                 <p><strong>Marca:</strong> {{ zapato.get_marca_display }}</p>
                 <p><strong>Descripción:</strong> {{ zapato.descripcion }}</p>
                 <p><strong>Precio:</strong> ${{ zapato.precio }}</p>
-                <a href="{% url 'home' %}" class="btn-ver-style btn ">Volver</a>
+               
                 <form method="post" action="{% url 'añadir_al_carrito' %}">
                     {% csrf_token %}
                     <input type="hidden" name="zapato_id" value="{{ zapato.id }}">

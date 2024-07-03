@@ -36,7 +36,7 @@ nav {
 
 .nav-carrito-sesion {
     margin-top: 10px;
-    margin-left: 970px;
+    margin-left: 120px;
     gap: 15px;
 
 }
@@ -286,10 +286,11 @@ nav {
 table{
     width: 100%;
     border-collapse: collapse;
+
 }
 
 th,td{
-    border: 1px solid black;
+    border: 1px solid rgb(156, 108, 108);
     padding: 8px;
     text-align: left;
 }

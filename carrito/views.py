@@ -6,6 +6,8 @@ from home.models import zapato
 from .forms import AñadirAlCarritoForm, EliminarDelCarritoForm
 from django.contrib.auth.decorators import login_required
 
+
+
 @login_required
 def ver_carrito(request):
     carrito = Carrito.objects.first()
@@ -13,6 +15,7 @@ def ver_carrito(request):
         carrito = Carrito.objects.create()
     elementos = ElementoCarrito.objects.filter(carrito=carrito)
     return render(request, 'carrito/ver_carrito.html', {'carrito': carrito, 'elementos': elementos})
+
 
 def añadir_al_carrito(request):
     if request.method == 'POST':
@@ -32,6 +35,7 @@ def añadir_al_carrito(request):
             elemento.save()
             return redirect('ver_carrito')
     return redirect('home')
+
 
 def actualizar_cantidad(request):
     if request.method == 'POST':
@@ -57,6 +61,8 @@ def actualizar_cantidad(request):
             'total': str(carrito.total)
         }
         return JsonResponse(response)
+
+
 
 def eliminar_del_carrito(request):
     if request.method == 'POST':
