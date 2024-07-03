@@ -1,15 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Carrito de Compras</title>
+{% extends 'zapatillas/index.html' %}
 
-    <link rel="stylesheet" href="{% static 'zapatillas/css/carrito.css' %}">
-    <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
-    <script defer src="{% static 'zapatillas/js/carrito.js' %}"></script>
-</head>
-<body>
+{% block contenido%}
+
+{% load static %}
+
     <h2>Carrito de Compras</h2>
     <ul id="carrito-elementos">
         {% for elemento in elementos %}
@@ -24,7 +18,5 @@
     </ul>
     <h3>Total: $<span id="carrito-total">{{ carrito.total }}</span></h3>
     <li class="nav-item"><a class="btn btn-white btn-style" href="{% url 'home' %}">Seguir Comprando</a></li>
-</body>
-</html>
 
-
+{% endblock %}

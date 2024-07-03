@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
 </head>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <p>¿No tienes una cuenta? <a href="{% url 'register' %}">Registrarse</a></p>
+    <div class="loginstyle">
+        <h2>Iniciar Sesión</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p>¿No tienes una cuenta? <a href="{% url 'register' %}">Registrarse</a></p>
+    </div>
 </body>
 
 </html>

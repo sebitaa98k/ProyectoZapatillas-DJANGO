@@ -4,8 +4,9 @@ import json
 from .models import Carrito, ElementoCarrito
 from home.models import zapato 
 from .forms import AñadirAlCarritoForm, EliminarDelCarritoForm
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def ver_carrito(request):
     carrito = Carrito.objects.first()
     if not carrito:

@@ -1,0 +1,39 @@
+{% extends 'zapatillas/index.html' %}
+
+{% block contenido%}
+
+<h2>Listado de Zapatillas</h2>
+
+
+
+{% load static %}
+
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Marca</th>
+        </tr>
+
+
+        
+        {% for zapato in zapatos %}
+
+        <tr>
+            <td>{{ zapato.nombre}}</td>
+            <td>{{ zapato.precio}}</td>
+            <td>{{ zapato.marca }}</td>
+            <td>
+                <a href="{% url 'modificar_zapato' zapato.id %}">Modificar</a>
+                <a href="{% url 'eliminar_zapato' zapato.id %}">Eliminar</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+ 
+
+{% endblock %}

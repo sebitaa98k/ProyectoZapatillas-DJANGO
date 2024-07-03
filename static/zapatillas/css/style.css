@@ -35,7 +35,8 @@ nav {
 }
 
 .nav-carrito-sesion {
-    margin-left: 1009px;
+    margin-top: 10px;
+    margin-left: 970px;
     gap: 15px;
 
 }
@@ -271,3 +272,12 @@ nav {
     gap: 20px
 ;
 }
+.img-fondo{
+    width: 950px;
+    height: auto;
+}
+
+.img-container{
+    
+}
+

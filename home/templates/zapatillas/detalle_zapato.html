@@ -1,15 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patagonia Kicks</title>
+{% extends 'zapatillas/index.html' %}
 
-    <link rel="stylesheet" href="{% static 'zapatillas/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
-</head>
-<body>
+{% block contenido%}
+
+
+
+{% load static %}
+
 
     <div class="container">
         <h1>{{ zapato.nombre }}</h1>
@@ -37,9 +33,4 @@
         </div>
     </div>
 
-    
-    <script src="{% static 'zapatillas/js/bootstrap.min.js' %}"></script>
-
-
-</body>
-</html>
+{% endblock %}
