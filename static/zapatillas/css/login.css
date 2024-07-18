@@ -1,0 +1,20 @@
+body{margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Jost', sans-serif;
+	background: linear-gradient(to bottom, #f3f2f8, #d2d1d6, #dadae0);
+}
+
+
+.login-style{
+    
+    padding: auto;
+    background-color: #c8b9b9;
+    position: absolute;
+    border-radius: 1em;
+   
+    align-items: center;
+}

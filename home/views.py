@@ -8,7 +8,7 @@ def home(request):
     return render(request, 'zapatillas/index.html')
 
 # Crete/añadir zapatillas (Crud)
-@login_required
+
 def nuevo_zapato(request):
     data = {
          'form':zapatoForm()

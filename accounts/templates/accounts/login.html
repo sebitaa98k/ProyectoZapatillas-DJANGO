@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
 
-    <link rel="stylesheet" href="{% static 'zapatillas/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'zapatillas/css/login.css' %}">
     <link rel="stylesheet" href="{% static 'zapatillas/css/bootstrap.min.css' %}">
 </head>
-<body>
-    <div class="loginstyle">
+<body class="body-login">
+    <div class="loginstyle login-style">
         <h2>Iniciar Sesión</h2>
         <form method="post">
             {% csrf_token %}

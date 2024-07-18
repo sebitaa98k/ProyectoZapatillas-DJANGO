@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
@@ -12,6 +12,8 @@ def register_view(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
+
+
 
 def login_view(request):
     if request.method == 'POST':
