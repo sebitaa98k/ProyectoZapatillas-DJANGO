@@ -2,7 +2,9 @@ from django.db import models
 from home.models import zapato
 
 class Carrito(models.Model):
-    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    def calcular_total(self):
+        total = sum(elemento.precio_total for elemento in self.elementocarrito_set.all())
+        return total
 
 class ElementoCarrito(models.Model):
     carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
@@ -13,3 +15,4 @@ class ElementoCarrito(models.Model):
     def save(self, *args, **kwargs):
         self.precio_total = self.cantidad * self.zapato.precio
         super().save(*args, **kwargs)
+

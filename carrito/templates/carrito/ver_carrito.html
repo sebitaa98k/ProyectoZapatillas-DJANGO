@@ -1,22 +1,35 @@
 {% extends 'zapatillas/index.html' %}
 
-{% block contenido%}
+{% block contenido %}
 
 {% load static %}
 
-    <h2>Carrito de Compras</h2>
-    <ul id="carrito-elementos">
-        {% for elemento in elementos %}
-            <li id="elemento-{{ elemento.id }}">
-                <img src="{{ elemento.zapato.imagen.url }}" alt="{{ elemento.zapato.nombre }}" style="width: 250px;">
-                {{ elemento.zapato.nombre }} - ${{ elemento.zapato.precio }} x <span class="cantidad">{{ elemento.cantidad }}</span> = <span class="precio_total">${{ elemento.precio_total }}</span>
-                <button class="btn-actualizar" data-id="{{ elemento.id }}" data-action="incrementar">+</button>
-                <button class="btn-actualizar" data-id="{{ elemento.id }}" data-action="decrementar">-</button>
-                <button class="btn-eliminar" data-id="{{ elemento.id }}">Eliminar</button>
-            </li>
-        {% endfor %}
-    </ul>
-    <h3>Total: $<span id="carrito-total">{{ carrito.total }}</span></h3>
-    <li class="nav-item"><a class="btn btn-white btn-style" href="{% url 'home' %}">Seguir Comprando</a></li>
+<h2>Carrito de Compras</h2>
+<ul id="carrito-elementos">
+    {% for elemento in elementos %}
+    <li id="elemento-{{ elemento.id }}">
+        <img src="{{ elemento.zapato.imagen.url }}" alt="{{ elemento.zapato.nombre }}" style="width: 250px;">
+        {{ elemento.zapato.nombre }} - ${{ elemento.zapato.precio }} x <span class="cantidad">{{ elemento.cantidad }}</span> = <span class="precio_total">${{ elemento.precio_total }}</span>
+        <div class="d-flex align-items-center mt-2">
+            <form action="{% url 'actualizar_carrito' elemento.id 'sumar' %}" method="post" class="me-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary">+</button>
+            </form>
+            <form action="{% url 'actualizar_carrito' elemento.id 'restar' %}" method="post" class="me-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary">-</button>
+            </form>
+            <form action="{% url 'eliminar_del_carrito' elemento.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+            </form>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<h3>Total: $<span id="carrito-total">{{ total }}</span></h3>
+<li class="nav-item"><a class="btn btn-white btn-style" href="{% url 'home' %}">Volver</a></li>
 
 {% endblock %}
+
+

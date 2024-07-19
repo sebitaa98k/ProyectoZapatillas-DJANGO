@@ -296,4 +296,15 @@ th,td{
 }
 
 
+        /*  IMAGEN DEL INDEX.HTML  */
+.img-container {
+    position: relative;
+    width: 100%;
+    height: auto; /* Ajusta la altura según tus necesidades */
+}
 
+.img-fondo {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Hace que la imagen cubra el contenedor sin perder su proporción */
+}
